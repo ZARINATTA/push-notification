@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './firebase/firebase-messaging-sw';
 
 function App() {
   return (
