@@ -39,7 +39,7 @@ async function requestPermission() {
     }
 
     onMessage(messaging, (payload) => {
-      console.log('메시지가 도착했습니다.', payload);
+      alert(payload.notification?.body);
       // ...
     });
   } catch (error) {
