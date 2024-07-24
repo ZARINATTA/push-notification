@@ -39,7 +39,7 @@ async function requestPermission() {
     }
 
     onMessage(messaging, (payload) => {
-      alert(payload.notification?.body);
+      alert('안녕하세용');
       // ...
     });
   } catch (error) {
