@@ -16,7 +16,8 @@ const messaging = getMessaging(app);
 
 async function requestPermission() {
   alert('권한 요청 중...');
-  try {
+
+  if ('Notification' in window) {
     const permission = await Notification.requestPermission();
     if (permission === 'denied') {
       alert('알림 권한 허용 안됨');
@@ -41,26 +42,26 @@ async function requestPermission() {
       console.log('메시지가 도착했습니다.', payload);
       // ...
     });
-  } catch (error) {
-    try {
-      const token = await getToken(messaging, {
-        vapidKey: process.env.REACT_APP_VAPID_KEY,
-      });
+  }
+  try {
+    const token = await getToken(messaging, {
+      vapidKey: process.env.REACT_APP_VAPID_KEY,
+    });
 
-      if (token) {
-        window.navigator.clipboard.writeText(token);
+    if (token) {
+      window.navigator.clipboard.writeText(token);
 
-        alert(token);
-      } else {
-        alert('Can not get Token');
-      }
-
-      onMessage(messaging, (payload) => {
-        alert(payload.notification?.body);
-      });
-    } catch (error) {
-      alert(error);
+      alert(token);
+    } else {
+      alert('Can not get Token');
     }
+
+    onMessage(messaging, (payload) => {
+      console.log('메시지가 도착했습니다.', payload);
+      // ...
+    });
+  } catch (error) {
+    alert(error);
   }
 }
 
