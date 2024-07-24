@@ -58,7 +58,6 @@ async function requestPermission() {
 
         onMessage(messaging, (payload) => {
           alert(payload.notification?.body);
-          // ...
         });
       } catch (error) {
         alert(error);
