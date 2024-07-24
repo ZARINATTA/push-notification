@@ -17,6 +17,8 @@ const messaging = getMessaging(app);
 async function requestPermission() {
   alert('권한 요청 중...');
 
+  alert(Notification.permission);
+
   const permission = await Notification.requestPermission();
   if (permission === 'denied') {
     alert('알림 권한 허용 안됨');
