@@ -42,22 +42,28 @@ async function requestPermission() {
       // ...
     });
   } catch (error) {
-    const token = await getToken(messaging, {
-      vapidKey: process.env.REACT_APP_VAPID_KEY,
-    });
+    {
+      try {
+        const token = await getToken(messaging, {
+          vapidKey: process.env.REACT_APP_VAPID_KEY,
+        });
 
-    if (token) {
-      window.navigator.clipboard.writeText(token);
+        if (token) {
+          window.navigator.clipboard.writeText(token);
 
-      alert(token);
-    } else {
-      alert('Can not get Token');
+          alert(token);
+        } else {
+          alert('Can not get Token');
+        }
+
+        onMessage(messaging, (payload) => {
+          alert(payload.notification?.body);
+          // ...
+        });
+      } catch (error) {
+        alert(error);
+      }
     }
-
-    onMessage(messaging, (payload) => {
-      console.log('메시지가 도착했습니다.', payload);
-      // ...
-    });
   }
 }
 
