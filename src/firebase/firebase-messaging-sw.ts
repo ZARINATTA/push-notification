@@ -17,13 +17,13 @@ const messaging = getMessaging(app);
 async function requestPermission() {
   alert('권한 요청 중...');
 
-  // const permission = await Notification.requestPermission();
-  // if (permission === 'denied') {
-  //   alert('알림 권한 허용 안됨');
-  //   return;
-  // }
+  const permission = await Notification.requestPermission();
+  if (permission === 'denied') {
+    alert('알림 권한 허용 안됨');
+    return;
+  }
 
-  // alert('알림 권한이 허용됨');
+  alert('알림 권한이 허용됨');
 
   try {
     const token = await getToken(messaging, {
