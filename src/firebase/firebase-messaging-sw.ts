@@ -31,6 +31,7 @@ async function requestPermission() {
 
   if (token) {
     window.navigator.clipboard.writeText(token);
+    alert(token);
     console.log('token: ', token);
   } else {
     console.log('Can not get Token');
