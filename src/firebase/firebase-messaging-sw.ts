@@ -15,15 +15,15 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 async function requestPermission() {
-  console.log('권한 요청 중...');
+  alert('권한 요청 중...');
 
   const permission = await Notification.requestPermission();
   if (permission === 'denied') {
-    console.log('알림 권한 허용 안됨');
+    alert('알림 권한 허용 안됨');
     return;
   }
 
-  console.log('알림 권한이 허용됨');
+  alert('알림 권한이 허용됨');
 
   const token = await getToken(messaging, {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
@@ -31,10 +31,10 @@ async function requestPermission() {
 
   if (token) {
     window.navigator.clipboard.writeText(token);
+
     alert(token);
-    console.log('token: ', token);
   } else {
-    console.log('Can not get Token');
+    alert('Can not get Token');
   }
 
   onMessage(messaging, (payload) => {
