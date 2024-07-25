@@ -14,7 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-async function requestPermission() {
+export async function requestPermission() {
   alert('권한 요청 중...');
 
   const permission = await Notification.requestPermission();
@@ -46,5 +46,3 @@ async function requestPermission() {
     alert(error);
   }
 }
-
-requestPermission();

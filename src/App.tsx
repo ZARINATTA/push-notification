@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import './firebase/firebase-messaging-sw';
+import { requestPermission } from './firebase/firebase-messaging-sw';
 
 function App() {
   return (
@@ -10,14 +10,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={requestPermission}>알림설정</button>
       </header>
     </div>
   );
